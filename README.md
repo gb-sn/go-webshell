@@ -4,7 +4,7 @@ A simple webshell written in Go.
 ### Compilation
 
 ```
-env GOOS=<OS> GOARCH=<ARCHITECTURE> go build main.go
+env GOOS=<OS> GOARCH=<ARCHITECTURE> go build shell.go
 ```
 
 ### Usage
