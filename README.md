@@ -9,7 +9,7 @@ env GOOS=<OS> GOARCH=<ARCHITECTURE> go build shell.go
 
 #### Usage
 
-Running with no arguments will launch the HTTP server on *0.0.0.0:8080*.
+Running with no arguments will launch the HTTP server on **0.0.0.0:8080**
 ```
 ./shell -ip <IP> -port <PORT>
 ```
