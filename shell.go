@@ -18,7 +18,6 @@ func run_cmd(cmd string) string {
         }
         return string(out)
     } else {
-
         sh := "sh"
         out, err := exec.Command(sh, "-c", cmd).Output()
         if err != nil {
