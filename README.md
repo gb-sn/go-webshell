@@ -1,5 +1,5 @@
 # go-webshell
-A simple webshell written in Go. 
+A simple webshell written in Go. Supports Windows and any Unix-like OS with The Bourne shell (sh).
 
 #### Compilation
 
