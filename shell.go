@@ -9,7 +9,7 @@ import (
     "flag"
 )
 
-func run_cmd(cmd string) string {
+func runCmd(cmd string) string {
     if runtime.GOOS == "windows" {
         sh := "cmd.exe"
         out, err := exec.Command(sh,"/K", cmd).Output()
@@ -17,14 +17,13 @@ func run_cmd(cmd string) string {
             return fmt.Sprintf("Error: %s", err)
         }
         return string(out)
-    } else {
-        sh := "sh"
-        out, err := exec.Command(sh, "-c", cmd).Output()
-        if err != nil {
-            return fmt.Sprintf("Error: %s", err)
-        }
-        return string(out)
     }
+    sh := "sh"
+    out, err := exec.Command(sh, "-c", cmd).Output()
+    if err != nil {
+        return fmt.Sprintf("Error: %s", err)
+    }
+    return string(out)
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
